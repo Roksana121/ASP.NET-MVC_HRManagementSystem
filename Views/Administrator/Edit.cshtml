@@ -1,0 +1,68 @@
+﻿@model Work_01.Models.ViewModels.AdministratorRetriveViewModels
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Update Administrator</h2>
+        @using (Html.BeginForm("Edit", "Administrator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div>
+                @Html.ValidationSummary(true)
+            </div>
+            @Html.HiddenFor(x => x.AdministratorId)
+            @Html.HiddenFor(x => x.Image)
+
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.AdministratorName, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.AdministratorName, new { @class = "form-control form-control" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.AdministratorName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Address, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.Address, new { @class = "form-control form-control" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.PostCode, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.PostCode, new { @class = "form-control form-control" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.PostCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Image, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.Image, new { @class = "form-control form-control", type = "file" })
+                    <img src="@Url.Content(Model.Image)" width="50" height="50" />
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-10 offset-2">
+                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                </div>
+            </div>
+        }
+
+    </div>
+    <div>
+        <a href="@Url.Action("Index","Administrator")" class="btn btn-link"><span class="glyphicon glyphicon-pencil"></span>Back to list</a>
+    </div>
+</div>

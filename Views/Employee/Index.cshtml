@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Work_01.Models.ViewModels.EmployeeViewModels>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Employee Details Information</h2>
+
+        @using (Html.BeginForm())
+        {
+
+            <input type="text" name="search" placeholder="Employee name..." />
+            <button type="submit" class="btn btn-success btn-sm mb-2">Search</button>
+
+
+        }
+        <div class="text-center">
+            <a href="@Url.Action("Create","Employee")" class="btn btn-primary btn-sm mb-2"><i class="bi bi-plus"></i>Add new Employee</a>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="list-group-item-heading">
+                <tr>
+                    <th>
+                        @Html.ActionLink("EmployeeName", "Index", "Employee", new { sort = ViewBag.sortBy }, new { })
+                    </th>
+                    <th>@Html.DisplayNameFor(x => x.EmployeeId)</th>
+                    <th>@Html.DisplayNameFor(x => x.EmployeeName)</th>
+                    <th>@Html.DisplayNameFor(x => x.Gender)</th>
+                    <th>@Html.DisplayNameFor(x => x.JoinDate)</th>
+                    <th>@Html.DisplayNameFor(x => x.Designation)</th>
+                    <th>@Html.DisplayNameFor(x => x.Status)</th>
+                    <th>@Html.DisplayNameFor(x => x.DepartmentId)</th>
+                    <th>@Html.DisplayNameFor(x => x.Address)</th>
+                    <th>@Html.DisplayNameFor(x => x.Email)</th>
+                    <th>@Html.DisplayNameFor(x => x.Phone)</th>
+                    <th>@Html.DisplayNameFor(x => x.SalaryAmmount)</th>
+                    <th>@Html.DisplayNameFor(x => x.Image)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Emp in Model)
+                {
+                    <tr>
+
+                        <td>@Html.DisplayFor(x => Emp.EmployeeName)</td>
+
+                        <td>@Html.DisplayFor(x => Emp.EmployeeId)</td>
+                        <td>@Html.DisplayFor(x => Emp.EmployeeName)</td>
+                        <td>@Html.DisplayFor(x => Emp.Gender)</td>
+                        <td>@Html.DisplayFor(x => Emp.JoinDate)</td>
+                        <td>@Html.DisplayFor(x => Emp.Designation)</td>
+                        <td>@Html.DisplayFor(x => Emp.Status)</td>
+                        <td>@Html.DisplayFor(x => Emp.DepartmentId)</td>
+                        <td>@Html.DisplayFor(x => Emp.Address)</td>
+                        <td>@Html.DisplayFor(x => Emp.Email)</td>
+                        <td>@Html.DisplayFor(x => Emp.Phone)</td>
+                        <td>@Html.DisplayFor(x => Emp.SalaryAmmount)</td>
+                        <td>
+                            <img src="@Url.Content(Emp.Image)" width="50" height="50" />
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end">
+                                <a href="@Url.Action("Edit","Employee")" class="btn btn-success btn-sm-mb-2"><i class="bi bi-pencil-small-mb-2"></i> Edit</a>
+                                <a href="@Url.Action("Delete","Employee")" class="btn btn-danger btn-sm-mb-2"><i class="bi bi-trash-small"></i> Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between bg-dark text-light">
+
+
+            @Html.PagedListPager(Model as IPagedList, PageNumber => Url.Action("Index", new { PageNumber, sort = ViewBag.CurrentSort }))
+            
+        </div>
+    </div>
+</div>

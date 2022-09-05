@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Work_01.Models.Department>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col">
+        <h2 class="display-6">Department List</h2>
+        <div class="d-flex justify-content-end mb-2">
+            <a href="@Url.Action("Create","Department")" class="btn btn-primary btn-sm"><i class="bi bi-plus"></i> Add New</a>
+        </div>
+        <table class="table table-bordered table-striped table-sm table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>SL No.</th>
+                    <th>@Html.DisplayNameFor(x => x.DepartmentName)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var d in Model.Select((x, i) => new { Data = x, Index = i + 1 }))
+                {
+                    <tr id="tr-@d.Index">
+                        <td>@d.Index</td>
+                        <td>@d.Data.DepartmentName</td>
+                        <td>
+                            <a href="@Url.Action("Edit","Department",new { id=d.Data.DepartmentId})" class="btn btn-info btn-sm"><i class="bi bi-pencil"></i> Edit</a>
+                            <a href="@Url.Action("Details","Department",new { id=d.Data.DepartmentId})" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i> Details</a>
+                            <a href="@Url.Action("Delete","Department",new { id=d.Data.DepartmentId})" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

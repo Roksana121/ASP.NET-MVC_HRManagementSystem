@@ -1,0 +1,181 @@
+﻿@model Work_01.Models.ViewModels.EmployeeViewModels
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="row">
+    <div class="col">
+
+
+        <h3>Are you sure you want to delete this?</h3>
+        <h2 class="alert alert-danger">Delete Employee</h2>
+        <div class="col-md-12">
+            @using (Html.BeginForm("Delete", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+           
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.EmployeeId, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.EmployeeId, new { @class = "form-control form-control" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.EmployeeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.EmployeeName, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.EmployeeName, new { @class = "form-control form-control" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.EmployeeName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.Gender, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Gender, new { @class = "form-control form-control" })
+                    </div>
+
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.JoinDate, new { @class = "col-form-label col-form-label-sm col-2 r" })
+
+                    <div class="col-6">
+
+                        @Html.TextBoxFor(x => x.JoinDate, new { @class = "form-control form-control", type = "date" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.JoinDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.Designation, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Designation, new { @class = "form-control form-control" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Designation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.Status, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Status, new { @class = "form-control form-control" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.DepartmentId, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.DropDownListFor(x => x.DepartmentId, ViewBag.employee as SelectList, "----Select-----", new { @class = "form-control form-control" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.DepartmentId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.Address, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Address, new { @class = "form-control form-control" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.Email, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control form-control" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.Phone, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control form-control" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.SalaryAmmount, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.SalaryAmmount, new { @class = "form-control form-control" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.SalaryAmmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.Image, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Image, new { @class = "form-control form-control", type = "file" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-10 offset-2">
+                        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="row">
+            <div class="d-flex justify-content-start">
+                <a href="@Url.Action("Index","Employee")" class="card-link"><i class="fa fa-arrow-left"></i>Back to the list</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

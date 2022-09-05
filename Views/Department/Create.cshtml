@@ -1,0 +1,54 @@
+﻿
+@model Work_01.Models.Department
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="alert alert-primary">Add New Department</h2>
+        @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "msg", OnComplete = "clearAll" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.DepartmentName, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.DepartmentName, new { @class = "form-control form-control" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.DepartmentName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-10 offset-2">
+                    <button class="btn btn-primary col-sm"><i class="bi bi-save"></i> Save</button>
+                    <button type="reset" class="btn btn-danger"><i class="bi bi-cancle"></i>Cancel</button>
+                </div>
+            </div>
+            @*<div class="row mb-1">
+                <div id="msg">
+                </div>
+            </div>*@
+        }
+    </div>
+
+    <div class="d-flex justify-content-start">
+        <a href="@Url.Action("Index","Department")" class="btn btn-link btn-sm mb-2"><i class="fa fa-arrow-left"></i>Back to list</a>
+    </div>
+
+</div>
+@section scripts{
+ 
+<script src="~/Scripts/jquery-1.8.0.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function clearAll() {
+            $("#form0").trigger("reset");
+        }
+    </script>
+}
+
+

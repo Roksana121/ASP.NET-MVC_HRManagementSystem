@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Work_01.Models.ViewModels.AdministratorRetriveViewModels>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>
+            Administrator List
+        </h2>
+        <div class="d-flex justify-content-end">
+            <a href="@Url.Action("Create","Administrator")" class="btn btn-primary btn-sm md-2"><i class="bi bi-plus"></i>Add New Administrator</a>
+        </div>
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>PostCode</th>
+                    <th>Photo</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ai in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(x => ai.AdministratorId)</td>
+                    <td>@Html.DisplayFor(x => ai.AdministratorName)</td>
+                    <td>@Html.DisplayFor(x => ai.Address)</td>
+                    <td>@Html.DisplayFor(x => ai.PostCode)</td>
+                    <td>
+                        <img src="@Url.Content(ai.Image)" width="50" height="50" />
+
+                    </td>
+                    <td>
+                       
+                            <a href="@Url.Action("Edit","Administrator",new { id=ai.AdministratorId})" class="btn btn-info btn-sm mb-2"><i class="bi bi-pencil"></i> Edit</a>
+                            <a href="@Url.Action("Delete","Administrator",new { id=ai.AdministratorId})" class="btn btn-danger btn-sm mb-2"><i class="bi bi-trash"></i> Delete</a>
+                      
+                    </td>
+                </tr>
+                }
+            </tbody>
+           
+        </table>
+    </div>
+</div>
+
